@@ -1,13 +1,14 @@
-import { prisma } from "@/lib/db"; 
+import { caller } from "@/trpc/server";
 
-const Page = async () => {
-  const users = await prisma.user.findMany()
-  return(
+
+const Page = async() => {
+  const queryClient = await caller.createAI({text : "Ankit Rewar"});
+
+  return (
     <div>
-      {JSON.stringify(users, null, 2)}
+   {JSON.stringify(queryClient)}
     </div>
-
   );
-}
+};
 
 export default Page;
